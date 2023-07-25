@@ -45,7 +45,8 @@ defmodule Githubapi.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:tesla, "~> 1.4"},
-      {:hackney, "~> 1.17"}
+      {:hackney, "~> 1.17"},
+      {:bypass, "~> 2.1", only: :test}
     ]
   end
 
