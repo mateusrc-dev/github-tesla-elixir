@@ -10,6 +10,8 @@ defmodule GithubapiWeb.Router do
 
     get "/", WelcomeController, :index
 
+    resources "/users/", UsersController, except: [:new, :edit]
+
     get "/github/:user", GithubController, :show
   end
 

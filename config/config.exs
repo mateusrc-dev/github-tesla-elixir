@@ -10,6 +10,10 @@ use Mix.Config
 config :githubapi,
   ecto_repos: [Githubapi.Repo]
 
+config :githubapi, Githubapi.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :githubapi, GithubapiWeb.Endpoint,
   url: [host: "localhost"],
