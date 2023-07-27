@@ -18,6 +18,10 @@ config :githubapi, GithubapiWeb.Auth.Guardian,
   issuer: "githubapi",
   secret_key: "oWdZfMXuXiQLsUR61Og5uZvci0M0wUfBF9rZ3VS9mUItv/SX3RNtYDVYO97Tg3gb"
 
+config :githubapi, GithubapiWeb.Auth.Pipeline,
+  module: GithubapiWeb.Auth.Guardian,
+  error_handler: GithubapiWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :githubapi, GithubapiWeb.Endpoint,
   url: [host: "localhost"],

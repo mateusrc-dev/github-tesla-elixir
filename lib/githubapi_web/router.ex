@@ -7,16 +7,26 @@ defmodule GithubapiWeb.Router do
     plug UUIDChecker
   end
 
+  pipeline :auth do
+    plug GithubapiWeb.Auth.Pipeline
+  end
+
+  scope "/api", GithubapiWeb do
+    pipe_through [:api, :auth]
+
+    get "/github/:user", GithubController, :show
+
+    resources "/users/", UsersController, except: [:new, :edit, :create]
+  end
+
   scope "/api", GithubapiWeb do
     pipe_through :api
 
     get "/", WelcomeController, :index
 
-    resources "/users/", UsersController, except: [:new, :edit]
+    post "/users/", UsersController, :create
 
     post "/users/signin", UsersController, :sign_in
-
-    get "/github/:user", GithubController, :show
   end
 
   # Enables LiveDashboard only for development
