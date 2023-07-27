@@ -7,6 +7,17 @@ defmodule GithubapiWeb.Auth.Guardian do
     {:ok, id}
   end
 
+  def authenticate(%{"id" => user_id, "password" => password}) do
+    with {:ok, %User{password_hash: hash} = user} <- UserGet.by_id(user_id),
+         true <- Pbkdf2.verify_pass(password, hash),
+         {:ok, token, _claims} <- encode_and_sign(user) do
+      {:ok, token}
+    else
+      false -> {:error, status: :unauthorized, result: "Please, verify your credentials"}
+      error -> error
+    end
+  end
+
   def resource_from_claims(%{"sub" => id}) do
     UserGet.by_id(id)
   end

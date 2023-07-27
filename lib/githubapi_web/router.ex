@@ -14,6 +14,8 @@ defmodule GithubapiWeb.Router do
 
     resources "/users/", UsersController, except: [:new, :edit]
 
+    post "/users/signin", UsersController, :sign_in
+
     get "/github/:user", GithubController, :show
   end
 
