@@ -9,7 +9,7 @@ defmodule Githubapi.Users.Create do
   end
 
   defp handle_insert({:ok, %User{} = result}) do
-    result
+    {:ok, result}
   end
 
   defp handle_insert({:error, result}) do

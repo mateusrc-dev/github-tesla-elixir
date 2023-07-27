@@ -1,8 +1,10 @@
 defmodule GithubapiWeb.Router do
   use GithubapiWeb, :router
+  alias GithubapiWeb.Plugs.UUIDChecker
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   scope "/api", GithubapiWeb do

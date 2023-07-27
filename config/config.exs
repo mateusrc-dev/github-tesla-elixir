@@ -14,6 +14,10 @@ config :githubapi, Githubapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+config :githubapi, GithubapiWeb.Auth.Guardian,
+  issuer: "githubapi",
+  secret_key: "oWdZfMXuXiQLsUR61Og5uZvci0M0wUfBF9rZ3VS9mUItv/SX3RNtYDVYO97Tg3gb"
+
 # Configures the endpoint
 config :githubapi, GithubapiWeb.Endpoint,
   url: [host: "localhost"],

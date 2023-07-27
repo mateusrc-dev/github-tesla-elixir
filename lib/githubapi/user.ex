@@ -7,7 +7,7 @@ defmodule Githubapi.User do
 
   @required_params [:password]
 
-  @derive {Jason.Encoder, only: [:id, :password]}
+  @derive {Jason.Encoder, only: [:id, :password_hash]}
 
   schema "users" do
     field :password, :string, virtual: true
